@@ -3,13 +3,9 @@ import "./Navbar.css"
 import PropTypes from 'prop-types';
 
 export default function Navbar(props) {
-
-
     return (
         <div className='navbar'>
-
-            <h1>{props.title}</h1>
-         
+            <h1>{props.title}</h1>     
         </div>
     )
 }
@@ -17,7 +13,6 @@ export default function Navbar(props) {
 Navbar.defaultProps = {
     title:"Hello",
 }
-
 Navbar.propTypes = {
     title: PropTypes.bool,
 
