@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
-import 'bootstrap/dist/js/bootstrap.bundle.min.js'; // Import Bootstrap JS
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js'; // This includes Popper.js as well.
 import './assets/appStyle.css'; // Import your custom CSS
 import 'font-awesome/css/font-awesome.min.css'; // If you're using Font Awesome icons
 import '@fortawesome/fontawesome-free/css/all.min.css';
@@ -10,28 +10,17 @@ import profileImage from './assets/img/profile.jpg';
 function App() {
 
   useEffect(() => {
-    if (window.bootstrap) {
-      const sideNav = document.body.querySelector('#sideNav');
-      if (sideNav) {
-        new window.bootstrap.ScrollSpy(document.body, {
-          target: '#sideNav',
-          rootMargin: '0px 0px -40%',
-        });
+    // Initialize ScrollSpy using Bootstrap 5
+    const scrollSpy = new window.bootstrap.ScrollSpy(document.body, {
+      target: '#navbar', // Replace with the actual ID of your navbar or scroll target
+    });
+
+    return () => {
+      // Cleanup ScrollSpy when the component unmounts
+      if (scrollSpy) {
+        scrollSpy.dispose();
       }
-      const navbarToggler = document.body.querySelector('.navbar-toggler');
-      const responsiveNavItems = [].slice.call(
-        document.querySelectorAll('#navbarResponsive .nav-link')
-      );
-      responsiveNavItems.forEach(function (responsiveNavItem) {
-        responsiveNavItem.addEventListener('click', () => {
-          if (window.getComputedStyle(navbarToggler).display !== 'none') {
-            navbarToggler.click();
-          }
-        });
-      });
-    } else {
-      console.error('Bootstrap is not loaded correctly.');
-    }
+    };
   }, []);
 
 
@@ -89,12 +78,25 @@ function App() {
             <p className="lead mb-5">
               Experienced MERN Stack Developer with 4 years of expertise in React for front-end and Node.js for back-end development. Proven track record in developing dynamic web applications, optimizing performance, and leading teams.
             </p>
+            {/* Social Media Section */}
             <div className="social-icons">
-              <a className="social-icon" target='_blank' href="https://www.linkedin.com/in/dev-bilalsiddique/"><i className="fab fa-linkedin-in"></i></a>
-              <a className="social-icon" target='_blank' href="https://github.com/"><i className="fab fa-github"></i></a>
-              <a className="social-icon" target='_blank' href="https://twitter.com/"><i className="fab fa-twitter"></i></a>
-              <a className="social-icon" target='_blank' href="https://www.facebook.com/BilalSIddiqueOfficial"><i className="fab fa-facebook-f"></i></a>
+              <a className="social-icon" target="_blank" href="https://www.linkedin.com/in/dev-bilalsiddique/">
+                <i className="fab fa-linkedin-in"></i>
+              </a>
+              <a className="social-icon" target="_blank" href="https://github.com/">
+                <i className="fab fa-github"></i>
+              </a>
+              <a className="social-icon" target="_blank" href="https://twitter.com/">
+                <i className="fab fa-x"></i>
+              </a>
+              <a className="social-icon" target="_blank" href="https://www.facebook.com/BilalSIddiqueOcial">
+                <i className="fab fa-facebook-f"></i>
+              </a>
+              <a className="social-icon" target="_blank" href="https://wa.me/923102097912" rel="noopener noreferrer">
+                <i className="fab fa-whatsapp"></i>
+              </a>
             </div>
+
           </div>
         </section>
 
@@ -291,15 +293,25 @@ function App() {
         {/* Awards & Certifications Section */}
         <section className="resume-section" id="awards">
           <div className="resume-section-content">
-            <h2 className="mb-5">Awards & Certifications</h2>
+            <h2 className="mb-5">Courses and Credentials</h2>
+            <div className="subheading mb-3">Udemy & Coursera | Online</div>
             <ul className="fa-ul mb-0">
-              <li><span className="fa-li"><i className="fas fa-trophy text-warning"></i></span> Google Analytics Certified Developer</li>
-              <li><span className="fa-li"><i className="fas fa-trophy text-warning"></i></span> AWS Certified Solutions Architect</li>
-              <li><span className="fa-li"><i className="fas fa-trophy text-warning"></i></span> Full-Stack Web Development Certification from FreeCodeCamp</li>
-              <li><span className="fa-li"><i className="fas fa-trophy text-warning"></i></span> ReactJS Advanced Developer Certification from Codecademy</li>
+              <li><span className="fa-li"><i className="fas fa-trophy text-warning"></i></span> Full-Stack Web Development Boot Camp - Udemy</li>
+              <li><span className="fa-li"><i className="fas fa-trophy text-warning"></i></span> Version Control (GitHub) - Udemy</li>
+              <li><span className="fa-li"><i className="fas fa-trophy text-warning"></i></span> ReactJS - Udemy</li>
+              <li><span className="fa-li"><i className="fas fa-trophy text-warning"></i></span> JavaScript: Beginner to Advanced - Udemy</li>
+              <li><span className="fa-li"><i className="fas fa-trophy text-warning"></i></span> Front-End Development - Udemy</li>
+              <li><span className="fa-li"><i className="fas fa-trophy text-warning"></i></span> HTML & CSS in Depth - Coursera</li>
+              <li><span className="fa-li"><i className="fas fa-trophy text-warning"></i></span> MongoDB Certified Developer – Nobel Work Foundation - Coursera</li>
+            </ul>
+            <div className="subheading mb-3">Other Certifications</div>
+            <ul className="fa-ul mb-0">
+              <li><span className="fa-li"><i className="fas fa-trophy text-warning"></i></span> SQL Database – Nobel Work Foundation</li>
+              <li><span className="fa-li"><i className="fas fa-trophy text-warning"></i></span> UX Design – Google</li>
             </ul>
           </div>
         </section>
+
 
       </div>
     </div>
